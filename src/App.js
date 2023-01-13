@@ -4,6 +4,7 @@ import "./App.css";
 
 import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
+import FavouritesButton from "./components/FavouritesButton";
 // import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
@@ -15,20 +16,9 @@ function App() {
   const [description, setDescription] = useState("");
   const [humidity, setHumidity] = useState("");
   const [pressure, setPressure] = useState("");
-
   const [temperatureUnit, setTemperatureUnit] = useState("K");
   const [icon, setIcon] = useState(null);
 
-  // switch (temperatureUnit) {
-  //   case "Celcius":
-  //     setTemperatureUnit("metric");
-  //     break;
-  //   case "Fahrenheit":
-  //     setTemperatureUnit("mperial");
-  //     break;
-  //   default:
-  //     setTemperatureUnit("");
-  // }
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
   console.log(temperatureUnit);
 
@@ -41,7 +31,7 @@ function App() {
       `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=dfcd7d85ac6f6d90550dc656ec7d05c2&units=${temperatureUnit}`
     );
     if (weatherResponse.status === 404) {
-      setErrorMessage("Location Not Found!");
+      setErrorMessage("Not a real place!");
     } else {
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
@@ -86,6 +76,7 @@ function App() {
           humidity={humidity}
         />
       )}
+      <FavouritesButton />
     </div>
   );
 }

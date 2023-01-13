@@ -15,7 +15,22 @@
   background: var(--bgColor);
   min-height: 100vh;
 }
-
+.favorites-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.favorites-button button {
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  width: 120px;
+  background: var(--textColor);
+  color: var(--whiteColor);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+}
 .loading-spinner {
   display: flex;
   margin-top: 2rem;
