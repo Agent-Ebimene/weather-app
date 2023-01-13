@@ -8,6 +8,7 @@ const WeatherDetails = ({
   temperatureUnit,
   iconUrl,
   weatherData,
+  location,
 }) => {
   return (
     <>
@@ -16,7 +17,7 @@ const WeatherDetails = ({
           <h2>
             {weatherData} °{temperatureUnit}
           </h2>
-          <p>Portugal</p>
+          <p>{location}</p>
         </article>
         <article className="weather-icon">
           {icon ? <img src={iconUrl} alt=""></img> : ""}

@@ -16,10 +16,10 @@
   padding-top: 1rem;
 }
 
-.app-header {
-  text-align: center;
-  font-size: 2.5rem;
-  color: var(--textColor);
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .location-form {

@@ -4,28 +4,17 @@ import "./App.css";
 
 import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
   const [location, setLocation] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const [temperatureUnit, setTemperatureUnit] = useState("Kevin");
   const [icon, setIcon] = useState(null);
 
-  // const searchLocation = (address) => {
-  //   const geocoder = new google.maps.Geocoder();
-  //   geocoder.geocode({ address: address }, (results, status) => {
-  //     if (status === "OK") {
-  //       setLocation(results[0].geometry.location);
-  //     } else {
-  //       setErrorMessage("This location is invalid");
-  //     }
-  //   });
-  // };
-  // useEffect(() => {
-  //   searchLocation(location);
-  // }, [location]);
   // switch (temperatureUnit) {
   //   case "Celcius":
   //     setTemperatureUnit("metric");
@@ -50,12 +39,13 @@ function App() {
     if (weatherResponse.status === 404) {
       setErrorMessage("Location Not Found!");
     } else {
+      setLoading(!loading);
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
       setWeatherData(weatherData.main.temp);
       setIcon(weatherData.weather[0].icon);
-      setLoading(false);
       setErrorMessage("");
+      setLoading(false);
     }
   };
   const handleChange = (e) => {
@@ -73,8 +63,11 @@ function App() {
         errorMessage={errorMessage}
       />
 
-      {loading === false && (
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
         <WeatherDetails
+          location={location}
           weatherData={weatherData}
           icon={icon}
           iconUrl={iconUrl}
