@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import LocationInput from "./components/LocationInput";
-import UnitDropdown from "./components/UnitDropdown";
+import WeatherDetails from "./components/WeatherDetails";
 
 function App() {
   const [location, setLocation] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const [temperatureUnit, setTemperatureUnit] = useState("");
+  const [temperatureUnit, setTemperatureUnit] = useState("Kevin");
   const [icon, setIcon] = useState(null);
 
   // const searchLocation = (address) => {
@@ -36,8 +36,9 @@ function App() {
   //   default:
   //     setTemperatureUnit("");
   // }
+  let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
+  console.log(temperatureUnit);
 
-  let iconUrl = `http://openweathermap.org/img/wn/${icon}@3x.png`;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (location.trim() === "") {
@@ -53,6 +54,7 @@ function App() {
       console.log(weatherData);
       setWeatherData(weatherData.main.temp);
       setIcon(weatherData.weather[0].icon);
+      setLoading(false);
       setErrorMessage("");
     }
   };
@@ -64,19 +66,22 @@ function App() {
   };
   return (
     <div className="app">
-      <h2 className="app-header">Weather application</h2>
       <LocationInput
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         location={location}
         errorMessage={errorMessage}
       />
-      <UnitDropdown
-        handleChangeTempUnit={handleChangeTempUnit}
-        temperatureUnit={temperatureUnit}
-      />
 
-      {icon ? <img src={iconUrl} alt=""></img> : <p>Loading....</p>}
+      {loading === false && (
+        <WeatherDetails
+          weatherData={weatherData}
+          icon={icon}
+          iconUrl={iconUrl}
+          handleChangeTempUnit={handleChangeTempUnit}
+          temperatureUnit={temperatureUnit}
+        />
+      )}
     </div>
   );
 }

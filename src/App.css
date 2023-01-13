@@ -2,6 +2,7 @@
 
 :root {
   --bgColor: #fbfbfb;
+  --whiteColor: #fff;
   --appBgColor: #9e9ea7;
   --textColor: #1d3557;
   --radius: 0.5rem;
@@ -12,10 +13,10 @@
 .app {
   background: var(--bgColor);
   min-height: 100vh;
+  padding-top: 1rem;
 }
 
 .app-header {
-  padding-top: 1.5rem;
   text-align: center;
   font-size: 2.5rem;
   color: var(--textColor);
@@ -79,6 +80,28 @@
   width: 100%;
   height: 100%;
   border-radius: var(--radius);
+  background: var(--textColor);
+  color: var(--whiteColor);
   outline: none;
   cursor: pointer;
+}
+
+.weather-details {
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+  padding: 1rem;
+  height: 250px;
+  border-radius: 30px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+.weather-info h2 {
+  color: var(--textColor);
+  font-size: 2rem;
+}
+
+.weather-icon img {
+  color: red;
 }

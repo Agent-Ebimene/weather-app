@@ -15,6 +15,7 @@ const LocationInput = ({
           onChange={handleChange}
           value={location}
         ></input>
+
         <p className={`error-text ${errorMessage ? "show-error" : ""}`}>
           {errorMessage}
         </p>

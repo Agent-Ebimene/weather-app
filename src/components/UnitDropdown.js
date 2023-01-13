@@ -4,9 +4,9 @@ const UnitDropdown = ({ temperatureUnit, handleChangeTempUnit }) => {
   return (
     <div className="temp-unit-container">
       <select value={temperatureUnit} onChange={handleChangeTempUnit}>
-        <option value="">Kelvin</option>
-        <option value="Celsius">Celsius</option>
-        <option value="Fahrenheit">Fahrenheit </option>
+        <option value="K">Kelvin</option>
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit </option>
       </select>
     </div>
   );
