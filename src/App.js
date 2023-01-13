@@ -37,7 +37,7 @@ function App() {
   //     setTemperatureUnit("");
   // }
 
-  let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
+  let iconUrl = `http://openweathermap.org/img/wn/${icon}@3x.png`;
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (location.trim() === "") {
@@ -48,11 +48,13 @@ function App() {
     );
     if (weatherResponse.status === 404) {
       setErrorMessage("Location Not Found!");
+    } else {
+      const weatherData = await weatherResponse.json();
+      console.log(weatherData);
+      setWeatherData(weatherData.main.temp);
+      setIcon(weatherData.weather[0].icon);
+      setErrorMessage("");
     }
-    const weatherData = await weatherResponse.json();
-    console.log(weatherData);
-    setWeatherData(weatherData.main.temp);
-    setIcon(weatherData.weather[0].icon);
   };
   const handleChange = (e) => {
     setLocation(e.target.value);
@@ -67,15 +69,14 @@ function App() {
         handleSubmit={handleSubmit}
         handleChange={handleChange}
         location={location}
+        errorMessage={errorMessage}
       />
-      <h2>{errorMessage ? `${errorMessage}` : ""}</h2>
-      <h1>Weather Data :{loading === false && "Fetching Done!"}</h1>
-      {icon ? <img src={iconUrl} alt=""></img> : <p>Loading....</p>}
-
       <UnitDropdown
         handleChangeTempUnit={handleChangeTempUnit}
         temperatureUnit={temperatureUnit}
       />
+
+      {icon ? <img src={iconUrl} alt=""></img> : <p>Loading....</p>}
     </div>
   );
 }
