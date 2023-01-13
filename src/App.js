@@ -4,15 +4,19 @@ import "./App.css";
 
 import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
-import LoadingSpinner from "./components/LoadingSpinner";
+// import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
   const [location, setLocation] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [cityName, setCityName] = useState("");
+  const [description, setDescription] = useState("");
+  const [humidity, setHumidity] = useState("");
+  const [pressure, setPressure] = useState("");
 
-  const [temperatureUnit, setTemperatureUnit] = useState("Kevin");
+  const [temperatureUnit, setTemperatureUnit] = useState("K");
   const [icon, setIcon] = useState(null);
 
   // switch (temperatureUnit) {
@@ -39,11 +43,14 @@ function App() {
     if (weatherResponse.status === 404) {
       setErrorMessage("Location Not Found!");
     } else {
-      setLoading(!loading);
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
       setWeatherData(weatherData.main.temp);
+      setHumidity(weatherData.main.humidity);
+      setPressure(weatherData.main.pressure);
       setIcon(weatherData.weather[0].icon);
+      setDescription(weatherData.weather[0].description);
+      setCityName(weatherData.name);
       setErrorMessage("");
       setLoading(false);
     }
@@ -64,7 +71,7 @@ function App() {
       />
 
       {loading ? (
-        <LoadingSpinner />
+        ""
       ) : (
         <WeatherDetails
           location={location}
@@ -73,6 +80,10 @@ function App() {
           iconUrl={iconUrl}
           handleChangeTempUnit={handleChangeTempUnit}
           temperatureUnit={temperatureUnit}
+          cityName={cityName}
+          description={description}
+          pressure={pressure}
+          humidity={humidity}
         />
       )}
     </div>

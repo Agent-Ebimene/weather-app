@@ -4,11 +4,12 @@ import { Circles } from "react-loader-spinner";
 
 const LoadingSpinner = () => {
   return (
-    <div classNmae="loading-spinner">
+    <div className="loading-spinner">
+      <h2> Loading</h2>
       <Circles
         height="80"
         width="80"
-        color="#4fa94d"
+        color="red"
         ariaLabel="circles-loading"
         wrapperStyle={{}}
         wrapperClass=""

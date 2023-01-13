@@ -8,7 +8,10 @@ const WeatherDetails = ({
   temperatureUnit,
   iconUrl,
   weatherData,
-  location,
+  cityName,
+  description,
+  pressure,
+  humidity,
 }) => {
   return (
     <>
@@ -17,7 +20,10 @@ const WeatherDetails = ({
           <h2>
             {weatherData} °{temperatureUnit}
           </h2>
-          <p>{location}</p>
+          <p>{cityName}</p>
+          <h3>{description}</h3>
+          <h3> Pressure:{pressure}</h3>
+          <h3>Humidity: {humidity}</h3>
         </article>
         <article className="weather-icon">
           {icon ? <img src={iconUrl} alt=""></img> : ""}
