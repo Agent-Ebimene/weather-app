@@ -57,6 +57,21 @@
   font-size: 1rem;
   border: 1px solid var(--textColor);
 }
+
+.radio-container {
+  margin-top: -0.5rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.radio-container p {
+  width: 100px;
+}
+.radio-container input {
+  width: 24px;
+  height: 24px;
+}
+
 .error-text {
   color: var(--redColor);
   font-size: 1.2rem;
