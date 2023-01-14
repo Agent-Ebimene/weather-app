@@ -4,10 +4,11 @@ import UnitDropdown from "./UnitDropdown";
 
 const WeatherDetails = ({
   icon,
-  handleChangeTempUnit,
+  handleTempUnitChange,
   temperatureUnit,
   iconUrl,
-  weatherData,
+  temperature,
+  previousTemp,
   cityName,
   description,
   pressure,
@@ -15,22 +16,27 @@ const WeatherDetails = ({
 }) => {
   return (
     <>
-      <div className="weather-details">
-        <article className="weather-info">
-          <h2>
-            {weatherData} °{temperatureUnit}
-          </h2>
-          <p>{cityName}</p>
-          <h3>{description}</h3>
-          <h3> Pressure:{pressure}</h3>
-          <h3>Humidity: {humidity}</h3>
-        </article>
-        <article className="weather-icon">
-          {icon ? <img src={iconUrl} alt=""></img> : ""}
-        </article>
-      </div>
+      {previousTemp ? (
+        <div className="weather-details">
+          <article className="weather-info">
+            <h2>
+              {temperature.toFixed(3)} °{temperatureUnit}
+            </h2>
+            <p>{cityName}</p>
+            <h3>{description}</h3>
+            <h3> Pressure:{pressure}</h3>
+            <h3>Humidity: {humidity}</h3>
+          </article>
+          <article className="weather-icon">
+            {icon ? <img src={iconUrl} alt=""></img> : ""}
+          </article>
+        </div>
+      ) : (
+        ""
+      )}
+
       <UnitDropdown
-        handleChangeTempUnit={handleChangeTempUnit}
+        handleTempUnitChange={handleTempUnitChange}
         temperatureUnit={temperatureUnit}
       />
     </>

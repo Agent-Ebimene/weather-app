@@ -4,12 +4,11 @@ import "./App.css";
 
 import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
-import FavouritesButton from "./components/FavouritesButton";
 // import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
   const [location, setLocation] = useState("");
-  const [weatherData, setWeatherData] = useState(null);
+  const [previousTemp, setPreviousTemp] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [cityName, setCityName] = useState("");
@@ -20,7 +19,6 @@ function App() {
   const [icon, setIcon] = useState(null);
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
-  console.log(temperatureUnit);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,14 +26,15 @@ function App() {
       setErrorMessage("Please enter a Location");
     }
     const weatherResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=dfcd7d85ac6f6d90550dc656ec7d05c2&units=${temperatureUnit}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=dfcd7d85ac6f6d90550dc656ec7d05c2`
     );
+    const weatherData = await weatherResponse.json();
+    console.log(previousTemp);
+
     if (weatherResponse.status === 404) {
       setErrorMessage("Not a real place!");
     } else {
-      const weatherData = await weatherResponse.json();
-      console.log(weatherData);
-      setWeatherData(weatherData.main.temp);
+      setPreviousTemp(weatherData.main.temp);
       setHumidity(weatherData.main.humidity);
       setPressure(weatherData.main.pressure);
       setIcon(weatherData.weather[0].icon);
@@ -48,9 +47,41 @@ function App() {
   const handleChange = (e) => {
     setLocation(e.target.value);
   };
-  const handleChangeTempUnit = (e) => {
-    setTemperatureUnit(e.target.value);
+  // const handleChangeTempUnit = (e) => {
+  //   setTemperatureUnit(e.target.value);
+  // };
+
+  const handleTempUnitChange = (e) => {
+    switch (temperatureUnit) {
+      case "K":
+        setTemperatureUnit(e.target.value);
+        break;
+      case "C":
+        setTemperatureUnit(e.target.value);
+        break;
+      case "F":
+        setTemperatureUnit(e.target.value);
+        break;
+      default:
+        setTemperatureUnit(e.target.value);
+    }
   };
+
+  let temperature;
+  switch (temperatureUnit) {
+    case "K":
+      temperature = previousTemp;
+      break;
+    case "C":
+      temperature = previousTemp - 273.15;
+      break;
+    case "F":
+      temperature = ((previousTemp - 273.15) * 9) / 5 + 32;
+      break;
+    default:
+      temperature = previousTemp;
+  }
+
   return (
     <div className="app">
       <LocationInput
@@ -65,10 +96,11 @@ function App() {
       ) : (
         <WeatherDetails
           location={location}
-          weatherData={weatherData}
+          temperature={temperature}
+          previousTemp={previousTemp}
           icon={icon}
           iconUrl={iconUrl}
-          handleChangeTempUnit={handleChangeTempUnit}
+          handleTempUnitChange={handleTempUnitChange}
           temperatureUnit={temperatureUnit}
           cityName={cityName}
           description={description}
@@ -76,7 +108,6 @@ function App() {
           humidity={humidity}
         />
       )}
-      <FavouritesButton />
     </div>
   );
 }

@@ -19,7 +19,7 @@ const LocationInput = ({
         <p className={`error-text ${errorMessage ? "show-error" : ""}`}>
           {errorMessage}
         </p>
-        <button type="submit">Get weather forecast</button>
+        <button type="submit">Get weather Data</button>
       </form>
     </div>
   );
