@@ -37,19 +37,20 @@ function App() {
       );
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
-
-      // if (weatherResponse.status === 404) {
-      //   setErrorMessage("Not a real place!");
-      // } else {
-      //   setPreviousTemp(weatherData.main.temp);
-      //   setHumidity(weatherData.main.humidity);
-      //   setPressure(weatherData.main.pressure);
-      //   setIcon(weatherData.weather[0].icon);
-      //   setDescription(weatherData.weather[0].description);
-      //   setCityName(weatherData.name);
-      //   setErrorMessage("");
-      //   setLoading(false);
-      // }
+      if (weatherForecastType === "weather") {
+        if (weatherResponse.status === 404) {
+          setErrorMessage("Not a real place!");
+        } else {
+          setPreviousTemp(weatherData.main.temp);
+          setHumidity(weatherData.main.humidity);
+          setPressure(weatherData.main.pressure);
+          setIcon(weatherData.weather[0].icon);
+          setDescription(weatherData.weather[0].description);
+          setCityName(weatherData.name);
+          setErrorMessage("");
+          setLoading(false);
+        }
+      }
     } catch (error) {
       console.log(error);
     }
@@ -57,9 +58,6 @@ function App() {
   const handleChange = (e) => {
     setLocation(e.target.value);
   };
-  // const handleChangeTempUnit = (e) => {
-  //   setTemperatureUnit(e.target.value);
-  // };
 
   const handleTempUnitChange = (e) => {
     switch (temperatureUnit) {
@@ -118,6 +116,7 @@ function App() {
           description={description}
           pressure={pressure}
           humidity={humidity}
+          weatherForecastType={weatherForecastType}
         />
       )}
     </div>

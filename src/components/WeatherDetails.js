@@ -1,6 +1,8 @@
 import React from "react";
 
 import UnitDropdown from "./UnitDropdown";
+import CurrentWeatherData from "./CurrentWeatherData";
+import ForecastDetails from "./ForecastDetails";
 
 const WeatherDetails = ({
   icon,
@@ -13,26 +15,24 @@ const WeatherDetails = ({
   description,
   pressure,
   humidity,
+  weatherForecastType,
 }) => {
   return (
     <>
-      {previousTemp ? (
-        <div className="weather-details">
-          <article className="weather-info">
-            <h2>
-              {temperature.toFixed(3)} °{temperatureUnit}
-            </h2>
-            <p>{cityName}</p>
-            <h3>{description}</h3>
-            <h3> Pressure:{pressure}</h3>
-            <h3>Humidity: {humidity}</h3>
-          </article>
-          <article className="weather-icon">
-            {icon ? <img src={iconUrl} alt=""></img> : ""}
-          </article>
-        </div>
+      {previousTemp && weatherForecastType === "weather" ? (
+        <CurrentWeatherData
+          previousTemp={previousTemp}
+          cityName={cityName}
+          description={description}
+          pressure={pressure}
+          humidity={humidity}
+          iconUrl={iconUrl}
+          icon={icon}
+          temperature={temperature}
+          temperatureUnit={temperatureUnit}
+        />
       ) : (
-        ""
+        <ForecastDetails />
       )}
 
       <UnitDropdown
