@@ -18,28 +18,32 @@ const WeatherDetails = ({
   weatherForecastType,
 }) => {
   return (
-    <>
-      {previousTemp && weatherForecastType === "weather" ? (
-        <CurrentWeatherData
-          previousTemp={previousTemp}
-          cityName={cityName}
-          description={description}
-          pressure={pressure}
-          humidity={humidity}
-          iconUrl={iconUrl}
-          icon={icon}
-          temperature={temperature}
-          temperatureUnit={temperatureUnit}
-        />
-      ) : (
-        <ForecastDetails />
-      )}
+    <div>
+      <div>
+        {weatherForecastType === "weather" ? (
+          previousTemp && (
+            <CurrentWeatherData
+              previousTemp={previousTemp}
+              cityName={cityName}
+              description={description}
+              pressure={pressure}
+              humidity={humidity}
+              iconUrl={iconUrl}
+              icon={icon}
+              temperature={temperature}
+              temperatureUnit={temperatureUnit}
+            />
+          )
+        ) : (
+          <ForecastDetails />
+        )}
+      </div>
 
       <UnitDropdown
         handleTempUnitChange={handleTempUnitChange}
         temperatureUnit={temperatureUnit}
       />
-    </>
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@
 }
 
 .app {
-  padding-top: 0.5rem;
+  padding-block: 0.5rem;
   background: var(--bgColor);
   min-height: 100vh;
 }
@@ -129,6 +129,15 @@
   border-radius: 30px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
+.forecast-weather-info {
+  margin: 1rem auto;
+  display: flex;
+  width: 500px;
+  padding: 0.5rem;
+  height: 250px;
+  border-radius: 30px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
 
 .weather-info h2 {
   color: var(--textColor);
@@ -139,6 +148,7 @@
   font-size: 1.2rem;
 }
 
-.weather-icon img {
-  color: red;
+.forecast-details {
+  display: flex;
+  justify-content: center;
 }
