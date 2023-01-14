@@ -131,12 +131,18 @@
 }
 .forecast-weather-info {
   margin: 1rem auto;
-  display: flex;
-  width: 500px;
+  width: 600px;
   padding: 0.5rem;
-  height: 250px;
+  min-height: 200px;
   border-radius: 30px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.forecast-weather-info P {
+  font-size: 12px;
 }
 
 .weather-info h2 {
@@ -149,6 +155,37 @@
 }
 
 .forecast-details {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+  flex-direction: column;
+  rotate: 1rem;
+}
+
+.forecast-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.day-container {
+  width: 20%;
+  text-align: center;
+  margin: 10px;
+}
+
+.temp-container {
   display: flex;
   justify-content: center;
+}
+
+.high-temp,
+.low-temp {
+  width: 100%;
+  padding: 10px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
 }

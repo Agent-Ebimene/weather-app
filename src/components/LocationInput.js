@@ -1,7 +1,5 @@
-import React from "react";
-
 const LocationInput = ({
-  handleChange,
+  handleChangeLocation,
   handleSubmit,
   location,
   errorMessage,
@@ -14,7 +12,7 @@ const LocationInput = ({
         <input
           type="text"
           placeholder="Enter a Location"
-          onChange={handleChange}
+          onChange={handleChangeLocation}
           value={location}
         ></input>
 

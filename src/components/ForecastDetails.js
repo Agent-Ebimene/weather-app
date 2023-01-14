@@ -1,21 +1,32 @@
 import React from "react";
 
-const ForecastDetails = () => {
+const ForecastDetails = ({ forecastDetails, temperatureUnit }) => {
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
   return (
-    <div className="forecast-details">
-      <div className="forecast-weather-info">
-        <article>
-          <h2>temperature</h2>
-          <p>Abuja</p>
-          <h3>Details</h3>
-          <h3> Pressure</h3>
-          <h3>Humidity: </h3>
-        </article>
-        {/* <article className="weather-icon">
-          {icon ? <img src={iconUrl} alt=""></img> : ""}
-        </article> */}
-      </div>
-    </div>
+    <>
+      {forecastDetails ? (
+        <div>
+          <div className="forecast-container">
+            {forecastDetails.map((day, i) => (
+              <div key={i} className="day-container">
+                <div className="day">{day.name}</div>
+                <img
+                  src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                  alt="Weather Icon"
+                />
+                <div className="temp-container">
+                  <div className="high-temp">High: {day.main.temp_max}</div>
+                  <div className="low-temp">Low: {day.main.temp_min}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

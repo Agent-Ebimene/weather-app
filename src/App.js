@@ -18,12 +18,14 @@ function App() {
   const [temperatureUnit, setTemperatureUnit] = useState("K");
   const [icon, setIcon] = useState(null);
   const [weatherForecastType, setWeatherForecastType] = useState("weather");
+  const [forecastDetails, setForecastDetails] = useState([]);
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
   const handleWeatherForecastTypeChange = (e) => {
     setWeatherForecastType(e.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (location.trim() === "") {
@@ -36,7 +38,6 @@ function App() {
         }?q=${location}&appid=dfcd7d85ac6f6d90550dc656ec7d05c2`
       );
       const weatherData = await weatherResponse.json();
-      console.log(weatherData);
       if (weatherForecastType === "weather") {
         if (weatherResponse.status === 404) {
           setErrorMessage("Not a real place!");
@@ -50,12 +51,19 @@ function App() {
           setErrorMessage("");
           setLoading(false);
         }
+      } else {
+        if (weatherResponse.status === 404) {
+          setErrorMessage("Not a real place!");
+        }
+        console.log(weatherData);
+        setForecastDetails(weatherData.list);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const handleChange = (e) => {
+
+  const handleChangeLocation = (e) => {
     setLocation(e.target.value);
   };
 
@@ -94,7 +102,7 @@ function App() {
     <div className="app">
       <LocationInput
         handleSubmit={handleSubmit}
-        handleChange={handleChange}
+        handleChangeLocation={handleChangeLocation}
         location={location}
         errorMessage={errorMessage}
         handleWeatherForecastTypeChange={handleWeatherForecastTypeChange}
@@ -117,6 +125,7 @@ function App() {
           pressure={pressure}
           humidity={humidity}
           weatherForecastType={weatherForecastType}
+          forecastDetails={forecastDetails}
         />
       )}
     </div>

@@ -16,6 +16,7 @@ const WeatherDetails = ({
   pressure,
   humidity,
   weatherForecastType,
+  forecastDetails,
 }) => {
   return (
     <div>
@@ -35,7 +36,10 @@ const WeatherDetails = ({
             />
           )
         ) : (
-          <ForecastDetails />
+          <ForecastDetails
+            forecastDetails={forecastDetails}
+            temperatureUnit={temperatureUnit}
+          />
         )}
       </div>
 
