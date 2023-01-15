@@ -5,6 +5,7 @@ import "./App.css";
 import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
 // import LoadingSpinner from "./components/LoadingSpinner";
+import Favorites from "./Favorites";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -19,6 +20,7 @@ function App() {
   const [icon, setIcon] = useState(null);
   const [weatherForecastType, setWeatherForecastType] = useState("weather");
   const [forecastDetails, setForecastDetails] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
@@ -128,6 +130,7 @@ function App() {
           forecastDetails={forecastDetails}
         />
       )}
+      <Favorites />
     </div>
   );
 }

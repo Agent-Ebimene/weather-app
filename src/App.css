@@ -6,6 +6,7 @@
   --appBgColor: #9e9ea7;
   --textColor: #1d3557;
   --radius: 0.5rem;
+  --favouritesBg: #929292;
   --redColor: red;
   --primaryFont: "Neue Haas Grotesk Text", sans-serif;
 }
@@ -162,30 +163,69 @@
   rotate: 1rem;
 }
 
-.forecast-container {
+.weather-forecast {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-.day-container {
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 20%;
-  text-align: center;
-  margin: 10px;
 }
 
-.temp-container {
-  display: flex;
-  justify-content: center;
-}
-
-.high-temp,
-.low-temp {
-  width: 100%;
-  padding: 10px;
-}
-
-img {
+.icon img {
   width: 50px;
   height: 50px;
+}
+
+.temp {
+  display: flex;
+  justify-content: space-between;
+}
+
+.high-temp {
+  font-weight: bold;
+}
+
+.favorites-container {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1)
+  );
+}
+.favorites-locations {
+  padding: 1rem;
+  width: 400px;
+  min-height: 100vh;
+  background: var(--favouritesBg);
+}
+.close-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+.close-btn i {
+  color: var(--redColor);
+  font-size: 2.5rem;
+}
+
+.favorites-header {
+  color: #ffffff;
+}
+@media screen and (max-width: 600px) {
+  .favorites {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    width: 100%;
+  }
 }
