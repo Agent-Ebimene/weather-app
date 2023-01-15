@@ -1,9 +1,9 @@
 import React from "react";
 
-const FavouritesButton = () => {
+const FavouritesButton = ({ handleShowLocation }) => {
   return (
-    <div className="favorites-button">
-      <button>Add to Favorites</button>.
+    <div className="favorites-button" onClick={handleShowLocation}>
+      <button>See to Favorites</button>
     </div>
   );
 };

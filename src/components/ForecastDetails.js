@@ -7,17 +7,19 @@ const ForecastDetails = ({ forecastDetails, temperatureUnit }) => {
     <>
       {forecastDetails ? (
         <div>
-          <div className="forecast-container">
-            {forecastDetails.map((day, i) => (
-              <div key={i} className="day-container">
-                <div className="day">{day.name}</div>
-                <img
-                  src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                  alt="Weather Icon"
-                />
-                <div className="temp-container">
-                  <div className="high-temp">High: {day.main.temp_max}</div>
-                  <div className="low-temp">Low: {day.main.temp_min}</div>
+          <div className="weather-forecast">
+            {forecastDetails.slice(0, 5).map((day, index) => (
+              <div className="day" key={index}>
+                <div className="time">{day.dt_txt}</div>
+                <div className="icon">
+                  <img
+                    src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                    alt={day.weather[0].description}
+                  />
+                </div>
+                <div className="temp">
+                  <div className="high-temp">{day.main.temp_max}</div>
+                  <div className="low-temp">{day.main.temp_min}</div>
                 </div>
               </div>
             ))}

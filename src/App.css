@@ -9,6 +9,7 @@
   --favouritesBg: #929292;
   --redColor: red;
   --primaryFont: "Neue Haas Grotesk Text", sans-serif;
+  --transition: all 0.3s linear;
 }
 
 .app {
@@ -16,6 +17,7 @@
   background: var(--bgColor);
   min-height: 100vh;
 }
+
 .favorites-button {
   display: flex;
   justify-content: center;
@@ -195,11 +197,12 @@
   top: 0;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)
-  );
+  background: var(--favouritesBg);
+  margin-right: -100%;
+  transition: var(--transition);
+}
+.show-favorites-container {
+  margin-right: 0;
 }
 .favorites-locations {
   padding: 1rem;

@@ -6,6 +6,7 @@ import LocationInput from "./components/LocationInput";
 import WeatherDetails from "./components/WeatherDetails";
 // import LoadingSpinner from "./components/LoadingSpinner";
 import Favorites from "./Favorites";
+import FavouritesButton from "./components/FavouritesButton";
 
 function App() {
   const [location, setLocation] = useState("");
@@ -21,12 +22,15 @@ function App() {
   const [weatherForecastType, setWeatherForecastType] = useState("weather");
   const [forecastDetails, setForecastDetails] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [showLocation, setShowLocation] = useState(false);
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
   const handleWeatherForecastTypeChange = (e) => {
     setWeatherForecastType(e.target.value);
   };
+  const handleShowLocation = () => setShowLocation(true);
+  const handleCloseLocation = () => setShowLocation(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,6 +106,8 @@ function App() {
 
   return (
     <div className="app">
+      <FavouritesButton handleShowLocation={handleShowLocation} />
+
       <LocationInput
         handleSubmit={handleSubmit}
         handleChangeLocation={handleChangeLocation}
@@ -130,7 +136,13 @@ function App() {
           forecastDetails={forecastDetails}
         />
       )}
-      <Favorites />
+      {showLocation && (
+        <Favorites
+          handleShowLocation={handleShowLocation}
+          handleCloseLocation={handleCloseLocation}
+          showLocation={showLocation}
+        />
+      )}
     </div>
   );
 }
