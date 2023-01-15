@@ -3,6 +3,7 @@ import React from "react";
 import UnitDropdown from "./UnitDropdown";
 import CurrentWeatherData from "./CurrentWeatherData";
 import ForecastDetails from "./ForecastDetails";
+import AddToFavoritesButton from "./AddToFavoritesButton";
 
 const WeatherDetails = ({
   icon,
@@ -44,11 +45,16 @@ const WeatherDetails = ({
           />
         )}
       </div>
-
-      <UnitDropdown
-        handleTempUnitChange={handleTempUnitChange}
-        temperatureUnit={temperatureUnit}
-      />
+      <div className="detail-btns">
+        <AddToFavoritesButton
+          handleAddToFavorites={handleAddToFavorites}
+          location={cityName}
+        />
+        <UnitDropdown
+          handleTempUnitChange={handleTempUnitChange}
+          temperatureUnit={temperatureUnit}
+        />
+      </div>
     </div>
   );
 };

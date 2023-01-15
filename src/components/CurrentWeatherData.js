@@ -1,5 +1,4 @@
 import React from "react";
-import AddToFavoritesButton from "./AddToFavoritesButton";
 
 const CurrentWeatherData = ({
   previousTemp,
@@ -11,7 +10,6 @@ const CurrentWeatherData = ({
   humidity,
   description,
   temperatureUnit,
-  handleAddToFavorites,
 }) => {
   return (
     <div>
@@ -30,10 +28,6 @@ const CurrentWeatherData = ({
             <article className="weather-icon">
               {icon ? <img src={iconUrl} alt=""></img> : ""}
             </article>
-            <AddToFavoritesButton
-              handleAddToFavorites={handleAddToFavorites}
-              location={cityName}
-            />
           </div>
         </div>
       ) : (

@@ -34,15 +34,16 @@ function App() {
     }
     console.log(favorites);
   };
-
+  const handleGetFavoritWeatherData = (location) => {};
   const handleWeatherForecastTypeChange = (e) => {
     setWeatherForecastType(e.target.value);
   };
   const handleShowLocation = () => setShowLocation(true);
   const handleCloseLocation = () => setShowLocation(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, place) => {
     e.preventDefault();
+    place = location;
     if (location.trim() === "") {
       setErrorMessage("Please enter a Location");
     }
@@ -54,6 +55,7 @@ function App() {
       );
       const weatherData = await weatherResponse.json();
       if (weatherForecastType === "weather") {
+        console.log(weatherData);
         if (weatherResponse.status === 404) {
           setErrorMessage("Not a real place!");
         } else {
@@ -144,6 +146,7 @@ function App() {
           weatherForecastType={weatherForecastType}
           forecastDetails={forecastDetails}
           handleAddToFavorites={handleAddToFavorites}
+          handleSubmit={handleSubmit}
         />
       )}
       {showLocation && (
@@ -152,6 +155,7 @@ function App() {
           handleCloseLocation={handleCloseLocation}
           showLocation={showLocation}
           favorites={favorites}
+          handleSubmit={handleSubmit}
         />
       )}
     </div>

@@ -1,6 +1,11 @@
 import React from "react";
 
-const Favorites = ({ handleCloseLocation, showLocation, favorites }) => {
+const Favorites = ({
+  handleCloseLocation,
+  showLocation,
+  favorites,
+  handleSubmit,
+}) => {
   return (
     <div
       className={`favorites-container ${
@@ -14,7 +19,14 @@ const Favorites = ({ handleCloseLocation, showLocation, favorites }) => {
         <h2 className="favorites-header">Favourite Cities</h2>
         <div className="location-names">
           {favorites.map((location, index) => (
-            <div key={index} className="favorite-location">
+            <div
+              key={index}
+              className="favorite-location"
+              onClick={(e, location) => {
+                handleSubmit(e, location);
+                console.log("done!");
+              }}
+            >
               <h3>{location}</h3>
             </div>
           ))}

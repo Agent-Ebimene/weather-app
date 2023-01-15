@@ -8,7 +8,10 @@ const LocationInput = ({
 }) => {
   return (
     <div>
-      <form onSubmit={handleSubmit} className="location-form">
+      <form
+        onSubmit={(e, location) => handleSubmit(e, location)}
+        className="location-form"
+      >
         <input
           type="text"
           placeholder="Enter a Location"

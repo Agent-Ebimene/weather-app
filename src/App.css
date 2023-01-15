@@ -13,7 +13,8 @@
 }
 
 .app {
-  padding-block: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
   background: var(--bgColor);
   min-height: 100vh;
 }
@@ -106,6 +107,7 @@
 }
 
 .temp-unit-container {
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   margin-left: 2rem;
@@ -204,7 +206,11 @@
 .show-favorites-container {
   margin-right: 0;
 }
-
+.detail-btns {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
 .close-btn {
   position: fixed;
   top: 2rem;
@@ -218,6 +224,7 @@
 
 .favorites-header {
   color: #ffffff;
+  text-align: center;
 }
 .location-names {
   display: flex;
