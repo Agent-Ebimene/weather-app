@@ -17,6 +17,7 @@ const WeatherDetails = ({
   humidity,
   weatherForecastType,
   forecastDetails,
+  handleAddToFavorites,
 }) => {
   return (
     <div>
@@ -33,6 +34,7 @@ const WeatherDetails = ({
               icon={icon}
               temperature={temperature}
               temperatureUnit={temperatureUnit}
+              handleAddToFavorites={handleAddToFavorites}
             />
           )
         ) : (

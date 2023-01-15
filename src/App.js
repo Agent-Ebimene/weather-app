@@ -26,6 +26,15 @@ function App() {
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
+  const handleAddToFavorites = (locationToAdd) => {
+    if (
+      !(favorites.filter((location) => location === locationToAdd).length > 0)
+    ) {
+      setFavorites((favorite) => [...favorite, locationToAdd]);
+    }
+    console.log(favorites);
+  };
+
   const handleWeatherForecastTypeChange = (e) => {
     setWeatherForecastType(e.target.value);
   };
@@ -134,6 +143,7 @@ function App() {
           humidity={humidity}
           weatherForecastType={weatherForecastType}
           forecastDetails={forecastDetails}
+          handleAddToFavorites={handleAddToFavorites}
         />
       )}
       {showLocation && (
@@ -141,6 +151,7 @@ function App() {
           handleShowLocation={handleShowLocation}
           handleCloseLocation={handleCloseLocation}
           showLocation={showLocation}
+          favorites={favorites}
         />
       )}
     </div>
