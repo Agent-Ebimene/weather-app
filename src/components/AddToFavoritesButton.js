@@ -1,10 +1,6 @@
 import React from "react";
 
-const AddToFavoritesButton = ({
-  handleAddToFavorites,
-  location,
-  handleSubmit,
-}) => {
+const AddToFavoritesButton = ({ handleAddToFavorites, location }) => {
   return (
     <div
       className="favorites-button "

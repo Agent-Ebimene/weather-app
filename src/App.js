@@ -23,8 +23,17 @@ function App() {
   const [forecastDetails, setForecastDetails] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [showLocation, setShowLocation] = useState(false);
+  const [showFavoriteLocationData, setShowFavoriteLocationData] =
+    useState(false);
 
   let iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
+
+  const handleShowFavoriteData = () => setShowFavoriteLocationData(true);
+
+  const handleCloseFavoriteData = () => {
+    setShowFavoriteLocationData(!setShowFavoriteLocationData);
+    console.log(showFavoriteLocationData);
+  };
 
   const handleAddToFavorites = (locationToAdd) => {
     if (
@@ -34,7 +43,6 @@ function App() {
     }
     console.log(favorites);
   };
-  const handleGetFavoritWeatherData = (location) => {};
   const handleWeatherForecastTypeChange = (e) => {
     setWeatherForecastType(e.target.value);
   };
@@ -156,6 +164,18 @@ function App() {
           showLocation={showLocation}
           favorites={favorites}
           handleSubmit={handleSubmit}
+          handleShowFavoriteData={handleShowFavoriteData}
+          showFavoriteLocationData={showFavoriteLocationData}
+          handleCloseFavoriteData={handleCloseFavoriteData}
+          temperature={temperature}
+          icon={icon}
+          iconUrl={iconUrl}
+          temperatureUnit={temperatureUnit}
+          cityName={cityName}
+          description={description}
+          pressure={pressure}
+          humidity={humidity}
+          handleTempUnitChange={handleTempUnitChange}
         />
       )}
     </div>

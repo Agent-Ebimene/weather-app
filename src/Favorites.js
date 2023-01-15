@@ -1,10 +1,23 @@
 import React from "react";
+import FavoriteWeatherData from "./components/FavoriteWeatherData";
 
 const Favorites = ({
   handleCloseLocation,
   showLocation,
   favorites,
   handleSubmit,
+  handleShowFavoriteData,
+  showFavoriteLocationData,
+  handleCloseFavoriteData,
+  temperature,
+  icon,
+  iconUrl,
+  temperatureUnit,
+  cityName,
+  description,
+  pressure,
+  humidity,
+  handleTempUnitChange,
 }) => {
   return (
     <div
@@ -21,13 +34,29 @@ const Favorites = ({
           {favorites.map((location, index) => (
             <div
               key={index}
-              className="favorite-location"
               onClick={(e, location) => {
                 handleSubmit(e, location);
-                console.log("done!");
+                handleShowFavoriteData();
               }}
             >
-              <h3>{location}</h3>
+              <div className="favorite-location">
+                <h3>{location}</h3>
+              </div>
+              {showFavoriteLocationData && (
+                <FavoriteWeatherData
+                  handleCloseFavoriteData={handleCloseFavoriteData}
+                  showFavoriteLocationData={showFavoriteLocationData}
+                  icon={icon}
+                  iconUrl={iconUrl}
+                  temperature={temperature}
+                  cityName={cityName}
+                  description={description}
+                  pressure={pressure}
+                  humidity={humidity}
+                  temperatureUnit={temperatureUnit}
+                  handleTempUnitChange={handleTempUnitChange}
+                />
+              )}
             </div>
           ))}
         </div>
